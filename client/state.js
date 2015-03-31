@@ -5,6 +5,7 @@ export default class State extends EventEmitter {
   constructor(state) {
     this._state = null
     this.load(state || {})
+    window.appState = this
   }
 
   load(state) {
@@ -32,13 +33,18 @@ export default class State extends EventEmitter {
       }
     })
   }
+
+  inspect() {
+    return this.get().toJS()
+  }
 }
 
-import DeveloperContract from './components/DeveloperContract'
+import Parts from './components/Parts'
 
 const initialState = {
   components: [
-    { name: 'Udviklerkontrakt', handler: DeveloperContract },
+    { name: 'Udviklerkontrakt', handler: Parts.DeveloperContract },
+    { name: 'Signatur', handler: Parts.Signature },
   ],
   draggingComponent: null,
   contract: {

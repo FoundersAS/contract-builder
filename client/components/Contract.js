@@ -3,23 +3,35 @@ import { contractCursor, draggingComponentCursor } from '../state'
 
 export default class Contract extends React.Component {
 
+  constructor(props) {
+    super(props)
+    this.cursor = contractCursor
+  }
+
   dragOver(e) {
     e.preventDefault()
   }
 
   drop(e) {
     e.preventDefault()
+
     const component = draggingComponentCursor()
     draggingComponentCursor(null)
-    contractCursor(contractCursor().updateIn(['components'], current => {
+
+    this.cursor(this.cursor().updateIn(['components'], current => {
       return current.concat([component])
     }))
+
     this.forceUpdate()
   }
 
+  serialize() {
+    const data = this.cursor().toJS()
+    console.log(data)
+  }
+
   render() {
-    const contract = contractCursor()
-    const components = contract.get('components')
+    const components = this.cursor().get('components')
     return (
       <main id='Contract'
         onDragOver={this.dragOver.bind(this)}
@@ -31,6 +43,7 @@ export default class Contract extends React.Component {
             return <li key={i}>{elm}</li>
           })}
         </ul>
+        <button onClick={this.serialize.bind(this)}>Serialize</button>
       </main>
     )
   }
