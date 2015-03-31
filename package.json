@@ -32,6 +32,8 @@
     "babel-core": "^4.7.4",
     "babel-loader": "^4.1.0",
     "css-loader": "^0.9.1",
+    "eventemitter3": "^0.1.6",
+    "immutable": "^3.7.1",
     "node-sass": "^3.0.0-pre",
     "react-hot-loader": "^1.2.2",
     "sass-loader": "^1.0.0",

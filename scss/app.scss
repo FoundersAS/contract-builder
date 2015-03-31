@@ -1,6 +1,42 @@
 $helvetica: 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
 
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
 body {
   font-family: $helvetica;
-  background-color: pink;
+  margin: 0;
+}
+
+#App {
+  border: 1px solid red;
+
+  display: flex;
+  height: 100%;
+}
+
+#Sidebar {
+  border: 1px solid purple;
+
+  flex: 1 1 auto;
+  width: 25%;
+  min-width: 200px;
+  max-width: 400px;
+
+  li {
+    display: block;
+    background: pink;
+    padding: 1em;
+  }
+}
+
+#Contract {
+  border: 1px solid yellow;
+
+  flex: 1 1 75%;
 }
