@@ -19,7 +19,7 @@ export default class Contract extends React.Component {
     draggingComponentCursor(null)
 
     this.cursor(this.cursor().updateIn(['components'], current => {
-      return current.concat([component])
+      return current.concat([React.createElement(component.get('handler'))])
     }))
 
     this.forceUpdate()
@@ -37,9 +37,7 @@ export default class Contract extends React.Component {
         onDragOver={this.dragOver.bind(this)}
         onDrop={this.drop.bind(this)}>
         <ul>
-          {components.map((v, i) => {
-            const handler = v.get('handler')
-            const elm = React.createElement(handler)
+          {components.map((elm, i) => {
             return <li key={i}>{elm}</li>
           })}
         </ul>
