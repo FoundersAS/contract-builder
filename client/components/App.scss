@@ -1,0 +1,43 @@
+@import "../common";
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  overflow: hidden;
+
+  font-family: $helvetica;
+  background-color: #ccc;
+}
+
+#App {
+  display: flex;
+  flex-flow: column wrap;
+  min-height: 100vh;
+  max-height: 100vh;
+
+  & > .content {
+    flex: 1 100%;
+
+    display: flex;
+
+    #Sidebar {
+      width: 200px;
+    }
+
+    #Contract {
+      flex: 1 auto;
+      overflow-y: auto;
+    }
+  }
+
+  & > .bottom {
+  }
+}
+

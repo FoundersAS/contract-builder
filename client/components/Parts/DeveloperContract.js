@@ -26,4 +26,5 @@ export default class DeveloperContract extends React.Component {
       </article>
     )
   }
+
 }

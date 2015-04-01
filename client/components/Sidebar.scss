@@ -1,0 +1,26 @@
+@import "../common";
+
+#Sidebar {
+  background-color: #555;
+
+  & > ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+
+    & > li {
+      display: block;
+      padding: 1em;
+
+      color: white;
+      font-weight: 900;
+      text-align: center;
+
+      img { display: inline-block; }
+
+      -webkit-font-smoothing: antialiased;
+    }
+  }
+
+}
+

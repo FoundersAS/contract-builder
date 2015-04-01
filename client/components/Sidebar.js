@@ -1,26 +1,35 @@
 import React from 'react'
-import { componentsCursor, draggingComponentCursor } from '../state'
+import componentsStore from '../stores/components_store'
+import StoreComponent from './StoreComponent'
+import contractActions from '../actions/contract_actions'
 
-export default class Sidebar extends React.Component {
+require('./Sidebar.scss')
+
+export default class Sidebar extends StoreComponent(componentsStore) {
 
   render() {
-    const components = componentsCursor()
     return (
-      <section id='Sidebar'>
-        {components.map(comp => {
-          const name = comp.get('name')
-          return <li draggable='true'
-            onDragStart={dragStartFn(comp)}
-            key={name}>{name}</li>
-        })}
+      <section id='Sidebar' {...this.props}>
+        <ul>
+          {this.state.components.map(comp => {
+            const name = comp.get('name')
+            return (
+              <li draggable={true} key={name}
+                onDragStart={dragStartFn(comp)}>
+                <img src='/images/paper.svg' className='paper' alt='paper' />
+                <br />
+                {name}
+              </li>
+            )
+          })}
+        </ul>
       </section>
     )
   }
 
 }
 
-function dragStartFn(comp) {
-  return e => {
-    draggingComponentCursor(comp)
-  }
+const dragStartFn = comp => e => {
+  contractActions.startDraggingComponent(comp)
 }
+

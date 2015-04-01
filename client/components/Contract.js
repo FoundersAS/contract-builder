@@ -1,12 +1,11 @@
 import React from 'react'
-import { contractCursor, draggingComponentCursor } from '../state'
+import contractStore from '../stores/contract_store'
+import contractActions from '../actions/contract_actions'
+import StoreComponent from './StoreComponent'
 
-export default class Contract extends React.Component {
+require('./Contract.scss')
 
-  constructor(props) {
-    super(props)
-    this.cursor = contractCursor
-  }
+export default class Contract extends StoreComponent(contractStore) {
 
   dragOver(e) {
     e.preventDefault()
@@ -14,30 +13,21 @@ export default class Contract extends React.Component {
 
   drop(e) {
     e.preventDefault()
-
-    const component = draggingComponentCursor()
-    draggingComponentCursor(null)
-
-    this.cursor(this.cursor().updateIn(['components'], current => {
-      return current.concat([React.createElement(component.get('handler'))])
-    }))
-
-    this.forceUpdate()
+    contractActions.appendComponent(this.state.draggingComponent)
   }
 
   serialize() {
-    const data = this.cursor().toJS()
-    console.log(data)
   }
 
   render() {
-    const components = this.cursor().get('components')
+    console.log(this.state)
     return (
       <main id='Contract'
         onDragOver={this.dragOver.bind(this)}
-        onDrop={this.drop.bind(this)}>
+        onDrop={this.drop.bind(this)}
+        {...this.props}>
         <ul>
-          {components.map((elm, i) => {
+          {this.state.contract.get('components').map((elm, i) => {
             return <li key={i}>{elm}</li>
           })}
         </ul>
@@ -45,5 +35,6 @@ export default class Contract extends React.Component {
       </main>
     )
   }
+
 }
 

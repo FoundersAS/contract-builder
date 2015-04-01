@@ -1,0 +1,23 @@
+@import "../common";
+
+#ActionBar {
+  background-color: #2D3D4C;
+  padding: 1em;
+  text-align: right;
+
+  ul {
+    @include inline-list;
+  }
+
+  a {
+    color: white;
+    font-weight: 900;
+    text-decoration: none;
+    -webkit-font-smoothing: antialiased;
+
+    background-color: rgba(#000, .2);
+    border: 1px solid rgba(#69778C, .5);
+    padding: 8px 2em;
+    border-radius: 3px;
+  }
+}
