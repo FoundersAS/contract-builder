@@ -14,19 +14,22 @@ class ContractStore {
   }
 
   onAppendComponent(component) {
-    const elm = React.createElement(component.get('handler'))
     const contract = this.contract.updateIn(['components'], current => {
-      return current.concat([elm])
+      return current.concat([component])
     })
-    console.log(this)
     this.setState({ contract })
   }
 
   onStartDraggingComponent(component) {
     this.setState({ draggingComponent: component })
   }
+
+  onSerialize() {
+    this.contract.get('components').map(comp => {
+      console.log(comp)
+    })
+  }
 }
 
 export default alt.createStore(ContractStore, 'ContractStore')
-
 

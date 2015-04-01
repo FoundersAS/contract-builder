@@ -2,7 +2,11 @@ import alt from '../alt'
 
 class ContractActions {
   constructor() {
-    this.generateActions('appendComponent', 'startDraggingComponent')
+    this.generateActions(
+      'appendComponent',
+      'startDraggingComponent',
+      'serialize'
+    )
   }
 }
 

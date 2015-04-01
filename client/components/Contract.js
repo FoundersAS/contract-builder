@@ -2,6 +2,7 @@ import React from 'react'
 import contractStore from '../stores/contract_store'
 import contractActions from '../actions/contract_actions'
 import StoreComponent from './StoreComponent'
+import { Part } from './Parts'
 
 require('./Contract.scss')
 
@@ -16,22 +17,18 @@ export default class Contract extends StoreComponent(contractStore) {
     contractActions.appendComponent(this.state.draggingComponent)
   }
 
-  serialize() {
-    console.log(this.state.contract.get('components'))
-  }
-
   render() {
+    const components = this.state.contract.get('components')
     return (
       <main id='Contract'
         onDragOver={this.dragOver.bind(this)}
         onDrop={this.drop.bind(this)}
         {...this.props}>
         <ul>
-          {this.state.contract.get('components').map((elm, i) => {
-            return <li key={i}>{elm}</li>
+          {components.map((component, i) => {
+            return <Part key={i} component={component} />
           })}
         </ul>
-        <button onClick={this.serialize.bind(this)}>Serialize</button>
       </main>
     )
   }
