@@ -17,10 +17,10 @@ export default class Contract extends StoreComponent(contractStore) {
   }
 
   serialize() {
+    console.log(this.state.contract.get('components'))
   }
 
   render() {
-    console.log(this.state)
     return (
       <main id='Contract'
         onDragOver={this.dragOver.bind(this)}

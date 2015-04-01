@@ -10,14 +10,15 @@
   }
 
   a {
+    padding: 8px 2em;
+
     color: white;
     font-weight: 900;
     text-decoration: none;
     -webkit-font-smoothing: antialiased;
 
-    background-color: rgba(#000, .2);
     border: 1px solid rgba(#69778C, .5);
-    padding: 8px 2em;
     border-radius: 3px;
+    background-color: rgba(#000, .2);
   }
 }
